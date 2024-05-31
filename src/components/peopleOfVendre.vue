@@ -315,6 +315,8 @@ export default {
 
   input:focus{
         outline: 1px solid #3d19eb;
+        border-radius: 14px;
+
     }
   
   .input-contain {
@@ -370,7 +372,6 @@ export default {
     flex-wrap: wrap;
     animation: loadingCards 0.8s ease;
     max-width: 130vh;
-    min-height: 100vh;
   }
   
   section,
@@ -384,7 +385,6 @@ export default {
     height: 100%;
     gap: 1vh;
     justify-content: center;
-    width: 30vh;
     align-items: center;
   }
 
