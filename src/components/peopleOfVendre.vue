@@ -25,21 +25,20 @@
           <section>
             <div class="card-contain">
               <div v-for="coWorker in filteredCoWorkers" :key="coWorker.id" class="card">
-                <div class="profileImg-contain">
-                <div class="profile-overlay">
-                    <a :href="`mailto:${coWorker.email}`">
 
-                    <svg id="contactIcon" width="64" height="64" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M14.0088 14.5771C14.3867 14.5771 14.7207 14.4014 15.1162 14.0059L22.7803 6.40332C22.4375 6.0957 21.8311 5.94629 20.9785 5.94629H6.80176C6.0459 5.94629 5.50977 6.08691 5.20215 6.36816L12.9014 14.0059C13.2881 14.4014 13.6309 14.5771 14.0088 14.5771ZM4.3584 19.8945L10.6777 13.6367L4.36719 7.40527C4.20898 7.68652 4.12109 8.15234 4.12109 8.81152V18.5234C4.12109 19.165 4.2002 19.6221 4.3584 19.8945ZM23.6416 19.8857C23.791 19.6133 23.8701 19.1562 23.8701 18.5234V8.81152C23.8701 8.16992 23.7822 7.7041 23.624 7.43164L17.3398 13.6367L23.6416 19.8857ZM7.0127 21.3887H21.1895C21.9629 21.3887 22.5078 21.2393 22.8242 20.9492L16.3906 14.5596L15.8457 15.0957C15.2393 15.6846 14.6592 15.9658 14.0088 15.9658C13.3584 15.9658 12.7695 15.6846 12.1631 15.0957L11.6182 14.5596L5.19336 20.9316C5.54492 21.2305 6.16016 21.3887 7.0127 21.3887Z" fill="#3d19eb"/>
-                    </svg>
-                </a>
 
-                </div>
-
-            </div>
                 <img :src="coWorker.avatar" :alt="`${coWorker.first_name} ${coWorker.last_name}`" />
                 <div class="card-text-contain">
                   <h3>{{ coWorker.first_name }} {{ coWorker.last_name }}</h3>
+                  <a :href="`mailto:${coWorker.email}`">
+                    <div class="row-contain">
+                  <p>{{coWorker.email }}</p>
+                  <svg id="arrow-link-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.6357 16.8975L20.627 8.07324C20.627 7.45801 20.2227 7.03613 19.5898 7.03613H10.7568C10.1592 7.03613 9.74609 7.48438 9.74609 8.01172C9.74609 8.53027 10.1943 8.96094 10.7305 8.96094H13.8857L17.6123 8.83789L16.0127 10.2441L7.67188 18.5938C7.46973 18.8047 7.35547 19.0508 7.35547 19.2969C7.35547 19.8154 7.83008 20.3076 8.36621 20.3076C8.6123 20.3076 8.8584 20.2021 9.06934 20L17.4189 11.6504L18.8428 10.0508L18.6934 13.6191V16.9238C18.6934 17.4688 19.124 17.9258 19.6602 17.9258C20.1875 17.9258 20.6357 17.4775 20.6357 16.8975Z" fill="#3D19EB"/>
+                    </svg>
+
+                </div>
+                    </a>
 
                 </div>
               </div>
@@ -151,6 +150,35 @@ export default {
     line-height: calc(1ex / 0.32);
     color: #999;
   }
+
+  a {
+    text-decoration: none !important;
+    cursor: pointer;
+    height: 44px;
+}
+
+a .row-contain p {
+    font-weight: 300;
+    color: #3d19eb;
+    font-size: 16px;
+}
+
+
+a .row-contain {
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.4s ease, margin-left 0.4s ease;
+}
+
+a .row-contain:hover {
+    border-bottom: 1px solid #3c19eb;
+    margin-left: 1vh;
+}
+
+#arrow-link-icon{
+    animation: hoverIcon 1s ease;
+
+}
+
   
   @media only screen and (min-width: 320px) and (max-width: 480px) {
     .text-contain {
@@ -223,7 +251,7 @@ export default {
   
   .text-contain h2,
   .text-contain p {
-    margin: 1vh;
+    margin: 0;
   }
   
   .contain-pagination {
@@ -334,7 +362,6 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 5vh;
     align-items: center;
     align-self: center;
     align-content: center;
@@ -383,7 +410,7 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
-    gap: 1vh;
+    gap: 2vh;
     justify-content: center;
     align-items: center;
   }
@@ -405,7 +432,7 @@ export default {
   
   .card-text-contain h3,
   .card-text-contain p {
-    margin: 1vh;
+    margin: 0vh;
   }
 
 
@@ -415,7 +442,6 @@ export default {
     width: 30vh;
     background-color: #eee;
     padding: 0.2vh;
-    border: 1px solid #3d19eb;
 
   }
 
@@ -438,9 +464,6 @@ export default {
     opacity: 1;
   }
   
-  #contactIcon:hover {
-    animation: hoverIcon 1s ease;
-  }
 
   #banner{
     background-color: #3d19eb;
@@ -451,6 +474,7 @@ export default {
     color: #fff;
   }
   
+
   @keyframes hoverIcon {
     50% {
       transform: scale(1.2) rotate(-30deg);
@@ -460,7 +484,6 @@ export default {
       transform: scale(0.8) rotate(0);
     }
   }
-  
 
   @keyframes loadingCards {
     0% {
